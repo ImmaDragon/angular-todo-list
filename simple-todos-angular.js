@@ -1,13 +1,12 @@
+Tasks = new Mongo.Collection('tasks');
+
 if (Meteor.isClient) {
     angular.module('simple-todos', ['angular-meteor']);
 
     angular.module('simple-todos').controller('TodosListCtrl', ['$scope',
       function($scope){
-        $scope.tasks=[
-        {text: 'This is task 1'},
-        {text: 'This is task 2'},
-        {text: 'This is task 3'}
-        ];
+        // we are using $meteor service to bind our tasks collection to our $scope.tasks variable
+        $scope.tasks = $meteor.collection(Tasks);
       }]);
 }
 
